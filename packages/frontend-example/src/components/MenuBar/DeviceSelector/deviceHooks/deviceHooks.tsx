@@ -32,5 +32,6 @@ export function useVideoInputDevices() {
 
 export function useAudioOutputDevices() {
   const devices = useDevices();
+  console.log('devices', devices);
   return devices.filter(device => device.kind === 'audiooutput');
 }

@@ -27,5 +27,8 @@
     "tsc": "^1.20150623.0",
     "typescript": "^3.7.5"
   },
-  "gitHead": "c344c7bacee201377e4a42409878c85c20a66769"
+  "gitHead": "c344c7bacee201377e4a42409878c85c20a66769",
+  "dependencies": {
+    "video-stream-merger": "^3.6.3"
+  }
 }

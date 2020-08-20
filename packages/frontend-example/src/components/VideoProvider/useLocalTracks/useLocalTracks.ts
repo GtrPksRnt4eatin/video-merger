@@ -2,6 +2,11 @@ import { DEFAULT_VIDEO_CONSTRAINTS } from '../../../constants';
 import { useCallback, useEffect, useState } from 'react';
 import Video, { LocalVideoTrack, LocalAudioTrack, CreateLocalTrackOptions } from 'twilio-video';
 
+const getusermedia = require('getusermedia');
+
+var VideoStreamMerger = require('video-stream-merger');
+var merger = new VideoStreamMerger();
+
 export default function useLocalTracks() {
   const [audioTrack, setAudioTrack] = useState<LocalAudioTrack>();
   const [videoTrack, setVideoTrack] = useState<LocalVideoTrack>();
@@ -53,10 +58,40 @@ export default function useLocalTracks() {
         name: `camera-${Date.now()}`,
       },
       audio: true,
+      //@ts-ignore
+      getUserMedia: () => {
+        return new Promise(resolve => {
+          getusermedia({ video: true, audio: true }, (err: any, webcamStream: any) => {
+            if (!window.location.host.includes('localhost')) {
+              console.log('not host');
+              resolve(webcamStream);
+            }
+            console.log('err', err);
+            console.log('webcam', webcamStream.getAudioTracks());
+            var audio = document.getElementById('audio');
+            // @ts-ignore
+            audio.volume = 0.2;
+
+            // @ts-ignore
+            merger.addStream(webcamStream);
+
+            merger.addMediaElement('music', audio);
+
+            merger.start();
+
+            console.log(merger.result.getAudioTracks());
+
+            resolve(merger.result);
+          });
+        });
+      },
     })
       .then(tracks => {
+        console.log('tracks', tracks);
         const videoTrack = tracks.find(track => track.kind === 'video');
         const audioTrack = tracks.find(track => track.kind === 'audio');
+
+        console.log('v', videoTrack, audioTrack);
         if (videoTrack) {
           setVideoTrack(videoTrack as LocalVideoTrack);
         }

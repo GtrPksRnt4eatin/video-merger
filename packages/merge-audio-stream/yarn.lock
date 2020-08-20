@@ -3311,6 +3311,11 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
+video-stream-merger@^3.6.3:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/video-stream-merger/-/video-stream-merger-3.6.3.tgz#59ec167c84864605e35e0fa1b5c4e375419dd4d7"
+  integrity sha512-OTcuX3tpEXvkeyJdCfb6CQiH5dbnlE1Aep2T19vs+2W7yNj0a+flGHEb0EiYlozmVS2KFiWsUW7IixGNwYHBTw==
+
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"

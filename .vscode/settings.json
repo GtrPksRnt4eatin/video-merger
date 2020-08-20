@@ -1,0 +1,5 @@
+{
+  "favorites.resources": [
+    "packages/frontend-example/node_modules/twilio-video"
+  ]
+}
